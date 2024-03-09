@@ -34,5 +34,6 @@ public class Main {
         ll.removeByIndex(3);
         System.out.println(ll);
         System.out.println(ll.size());
+        ll.removeByIndex(30);
     }
 }

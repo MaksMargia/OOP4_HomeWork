@@ -46,7 +46,7 @@ public class GbLinkedList<E> implements GbList<E> {
     @Override
     public void add(int index, E value) {
         if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("Invalid index");
+            throw new IndexOutOfBoundsException("Неверный индекс");
         }
         if (index == 0) {
             if (firstNode != null) {
@@ -85,6 +85,9 @@ public class GbLinkedList<E> implements GbList<E> {
 
     @Override
     public void removeByIndex(int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Неверный индекс");
+        }
         Node<E> currentNode = findNodeByIndex(index);
         if (index == 0){
             firstNode = currentNode.next;

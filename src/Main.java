@@ -33,7 +33,9 @@ public class Main {
         System.out.println(ll.size());
         ll.removeByIndex(3);
         System.out.println(ll);
-        System.out.println(ll.size());
-        ll.removeByIndex(30);
+//        System.out.println(ll.size());
+//        ll.removeByIndex(30);
+        ll.add(5, "234");
+        System.out.println(ll);
     }
 }

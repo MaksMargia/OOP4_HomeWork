@@ -8,9 +8,9 @@ import java.util.Iterator;
 public class GbLinkedList<E> implements GbList<E> {
     private Node<E> firstNode;
     private Node<E> lastNode;
-    private Node<E> currentNode;
-    private Node<E> prevNode;
     private int size;
+
+
     public GbLinkedList() {
         this.size = 0;
     }
@@ -37,8 +37,8 @@ public class GbLinkedList<E> implements GbList<E> {
             firstNode = addNode(null, value, null);
             lastNode = firstNode;
         } else {
-            currentNode = lastNode;
-            lastNode = addNode(currentNode, value, null);
+            Node<E> currentNode = lastNode;
+            lastNode = addNode(lastNode, value, null);
             currentNode.next = lastNode;
         }
     }
@@ -48,16 +48,18 @@ public class GbLinkedList<E> implements GbList<E> {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Неверный индекс");
         }
+        Node<E> currentNode;
         if (index == 0) {
             if (firstNode != null) {
-                prevNode = firstNode;
-                firstNode = addNode(null, value, prevNode);
-                prevNode.prev = firstNode;
+                currentNode = firstNode;
+                firstNode = addNode(null, value, currentNode);
+                currentNode.prev = firstNode;
             } else {
                add(value);
             }
         } else if (index == size) {
-            lastNode = addNode(lastNode, value, null);
+             add(value);
+             //lastNode = addNode(lastNode, value, null);
         } else {
             currentNode = findNodeByIndex(index);
             currentNode.prev.next = addNode(currentNode.prev, value, currentNode);
@@ -108,13 +110,13 @@ public class GbLinkedList<E> implements GbList<E> {
 
     @Override
     public String toString() {
-        this.currentNode = this.firstNode;
+        Node<E> currentNode = this.firstNode;
         StringBuilder builder = new StringBuilder("[");
-        while (this.currentNode.next != null) {
-            builder.append(this.currentNode.value).append(", ");
-            this.currentNode = this.currentNode.next;
+        while (currentNode.next != null) {
+            builder.append(currentNode.value).append(", ");
+            currentNode = currentNode.next;
         }
-        builder.append(this.currentNode.value).append("]");
+        builder.append(currentNode.value).append("]");
         if (builder.length() == 1)
             return "[]";
         return builder.toString();

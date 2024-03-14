@@ -72,15 +72,6 @@ public class GbArrayList<E> implements GbList<E> {
         }
     }
 
-//    @Override
-//    public void remove(int index) {
-//        capacity = capacity - 1;
-//        E[] res = (E[]) new Object[capacity];
-//        System.arraycopy(values, 0, res, 0, index);
-//        int amountElementsAfterIndex = values.length - index - 1; // [1, 2, 3, 4, 5] : 5 - 2 - 1 = 2
-//        System.arraycopy(values, index + 1, res, index, amountElementsAfterIndex);
-//        size--;
-//    }
 
     @Override
     public int size() {
